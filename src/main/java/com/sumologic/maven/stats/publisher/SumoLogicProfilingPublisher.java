@@ -69,9 +69,13 @@ public class SumoLogicProfilingPublisher implements ProfilingPublisher {
 
   private SumoHttpSender ensureHttpSenderStarted() {
     if (httpSender == null) {
-      httpSender = new SumoHttpSender(logger);
-      httpSender.setUrl(sumoEndpoint);
-      httpSender.init();
+      synchronized(this) {
+        if (httpSender == null) {
+          httpSender = new SumoHttpSender(logger);
+          httpSender.setUrl(sumoEndpoint);
+          httpSender.init();
+        }
+      }
     }
 
     return httpSender;

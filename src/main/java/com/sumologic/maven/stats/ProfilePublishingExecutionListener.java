@@ -105,7 +105,11 @@ public class ProfilePublishingExecutionListener extends AbstractExecutionListene
 
   private SessionProfiler ensureProfilerStarted(ExecutionEvent event) {
     if (this.sessionProfiler == null) {
-      this.sessionProfiler = new SessionProfiler(event.getSession());
+      synchronized(this) {
+        if (this.sessionProfiler == null) {
+          this.sessionProfiler = new SessionProfiler(event.getSession());
+        }
+      }
     }
     return this.sessionProfiler;
   }

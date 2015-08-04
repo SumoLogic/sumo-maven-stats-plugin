@@ -4,7 +4,7 @@
 
   <groupId>com.sumologic.maven</groupId>
   <artifactId>sumo-logic-maven-extension</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>sumo-logic Maven Extension</name>
